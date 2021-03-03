@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://beitech-sas.ccnlcdeiv1f1.us-east-1.rds.amazonaws.com:3306/test?characterEncoding=UTF-8
+    username: beitech_test
+    password: K#j~t33@M}
+
+  jpa.show-sql: true
+  jpa.properties.hibernate.format_sql: true

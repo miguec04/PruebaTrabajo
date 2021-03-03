@@ -1,0 +1,123 @@
+<div *ngIf="verConsulta">
+	<h2 style="text-align: center;">Lista Terceros</h2>
+    <p-table [value]="listaCustomer" [rows]="5" [paginator]="true" [pageLinks]="5">
+	    <ng-template pTemplate="header">
+	        <tr>
+	        	<th></th>
+	            <th>Id</th>
+	            <th>Nombre</th>
+	            <th>Email</th>
+	        </tr>
+	    </ng-template>
+	    <ng-template pTemplate="body" let-obj>
+	        <tr>
+	        	<td><p-button label="" icon="pi pi-user-edit" (onClick)="setEditar(obj)" iconPos="left"></p-button></td>
+	            <td>{{obj.customerId}}</td>
+	            <td>{{obj.name}}</td>
+	            <td>{{obj.email}}</td>
+	        </tr>
+	    </ng-template>
+	</p-table>
+</div>
+<div *ngIf="verEditor">
+	<h2 style="text-align: center;">Lista Facturas</h2>
+	<p-table [value]="listaFacturas"  [rows]="5" [paginator]="true" [pageLinks]="5">
+	    <ng-template pTemplate="header">
+	        <tr>
+	            <th>Creation Date</th>
+	            <th>order_id</th>
+	            <th>total</th>
+	            <th>delivery_address</th>
+	            <th>products</th>
+	        </tr>
+	    </ng-template>
+	    <ng-template pTemplate="body" let-obj>
+	        <tr>
+	            <td>{{obj.creationDate}}</td>
+	            <td>{{obj.orderId}}</td>
+	            <td>{{obj.total}}</td>
+	            <td>{{obj.deliveryAddress}}</td>
+	            <td>{{obj.products}}</td>
+	        </tr>
+	    </ng-template>
+	</p-table>
+	<h2 style="text-align: center;">Crear Factura</h2>
+	<div>
+		<label for="txtId">
+			Id:
+		</label>
+	    <input id="txtId" type="numer" pInputText [(ngModel)]="getObjeto().customerId" readonly="readonly">
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<label for="float-input">
+			Name:
+		</label>
+	    <input id="txtName" type="text" pInputText [(ngModel)]="getObjeto().name" readonly="readonly">
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<label for="float-input">
+			Email:
+		</label>
+	    <input id="txtEmail" type="email" pInputText [(ngModel)]="getObjeto().email" readonly="readonly">
+	    <label for="float-input">
+			Direccion:
+		</label>
+	    <input id="txtDireccion" type="text" pInputText [(ngModel)]="direccion">
+	</div>
+	<h2 style="text-align: center;">Detalle Factura</h2>
+	
+	<p-table [value]="listaOrden">
+	    <ng-template pTemplate="header">
+	        <tr>
+	            <th>Producto</th>
+	            <th>Cantiad</th>
+	            <th>Valor</th>
+	            <th>Total</th>
+	        </tr>
+	    </ng-template>
+	    <ng-template pTemplate="body" let-obj>
+	        <tr>
+	            <td>{{obj.producto.name}}</td>
+	            <td>{{obj.cantidad}}</td>
+	            <td>{{obj.total}}</td>
+	            <td>{{obj.total*obj.cantidad}}</td>
+	        </tr>
+	    </ng-template>
+	</p-table>
+	<Br/>
+	<table style="margin: 0 auto;">
+		<tr>
+			<td>
+				Producto
+			</td>
+			<td>
+				Valor
+			</td>
+			<td>
+				Cantidad
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p-dropdown [filter]="true" [options]="getListaProductos()" [(ngModel)]="agregaProducto" placeholder="Seleccionar Producto" optionLabel="name" optionValue="productId"></p-dropdown>
+			</td>
+			<td>
+				<input id="txtValorProducto" type="number" pInputText [(ngModel)]="valorProducto"/>
+			</td>
+			<td>
+				<input id="txtCantidadProducto" type="number" pInputText [(ngModel)]="cantidadProducto"/>
+			</td>
+		</tr>
+	</table>
+	<br/>
+	<table style="margin: 0 auto 0 auto;">
+		<tr>
+			<td><p-button label="Agregar" icon="pi pi-user-edit" (onClick)="setAgregar()" iconPos="left"></p-button></td>
+		</tr>
+	</table>
+	<Br/>
+	<table style="margin: 0 auto 0 auto;">
+		<tr>
+			<td><p-button label="Cancelar" (onClick)="setInicio()" iconPos="left"></p-button></td>
+			<td><p-button label="guardar" icon="pi pi-user-edit" (onClick)="setGuardar()" iconPos="left"></p-button></td>
+		</tr>
+	</table>
+</div>
